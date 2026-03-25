@@ -12,7 +12,7 @@
       background: linear-gradient(135deg, #000428, #004e92);
       color: white;
       text-align: center;
-      padding: 20px 10px;
+      padding: 20px 10px 90px; /* bottom space for sticky button */
     }
 
     .container {
@@ -21,13 +21,8 @@
       animation: fadeIn 1.2s ease;
     }
 
-    img {
-      width: 100%;
-      border-radius: 12px;
-      margin: 12px 0;
-    }
+    img { width: 100%; border-radius: 12px; margin: 12px 0; }
 
-    /* 🔥 LOGO WITH GLOW RING */
     .image-wrapper {
       display: inline-block;
       padding: 5px;
@@ -42,29 +37,16 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
+      aspect-ratio: 1/1;
+      display: block;
     }
 
-    h1 {
-      font-size: 22px;
-      margin: 10px 0;
-    }
+    h1 { font-size: 22px; margin: 10px 0; }
+    h2 { font-size: 18px; margin: 10px 0; }
+    p { font-size: 15px; }
 
-    h2 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
+    .highlight { color: #ffd700; font-weight: bold; }
 
-    p {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .highlight {
-      color: #ffd700;
-      font-weight: bold;
-    }
-
-    /* 🔥 PULSE BUTTON */
     .btn {
       display: block;
       background: #1877f2;
@@ -75,22 +57,45 @@
       text-decoration: none;
       margin: 20px 0;
       animation: pulse 1.5s infinite;
-      box-shadow: 0 0 0 rgba(24,119,242,0.6);
     }
 
-    .urgency {
-      color: #ffcc00;
+    .urgency { color: #ffcc00; font-weight: bold; margin-top: 10px; }
+
+    .trust { margin-top: 15px; font-size: 14px; opacity: 0.9; }
+
+    /* 🔴 Counter */
+    .counter {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #ff4d4d;
       font-weight: bold;
-      margin-top: 15px;
     }
 
-    .trust {
-      margin-top: 20px;
-      font-size: 14px;
-      opacity: 0.9;
+    /* ⏳ Countdown */
+    .timer {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #00ffcc;
+      font-weight: bold;
     }
 
-    /* ANIMATIONS */
+    /* 📌 Sticky Button */
+    .sticky-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #1877f2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+      text-decoration: none;
+      animation: pulse 1.5s infinite;
+      z-index: 999;
+    }
+
+    /* Animations */
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(24,119,242,0.7); }
       70% { box-shadow: 0 0 0 18px rgba(24,119,242,0); }
@@ -121,7 +126,6 @@
   <div class="container">
 
     <!-- LOGO -->
-    <!-- Upload Logo Here (1:1 Ratio, Recommended: 300x300 px) -->
     <div class="image-wrapper">
       <img src="logo.jpg" class="logo">
     </div>
@@ -131,15 +135,13 @@
     <!-- BUTTON -->
     <a href="#" class="btn">👉 Join Our Telegram Channel</a>
 
-    <!-- IPL POSTER -->
-    <!-- Upload Image Here (9:16 Ratio, Recommended: 1080x1920 px) -->
-    <img src="poster.jpg" alt="IPL Poster">
+    <!-- POSTER -->
+    <img src="poster.jpg">
 
     <h2>India’s Best Channel for Upcoming Matches IPL 2026</h2>
 
-    <!-- MATCH IMAGE -->
-    <!-- Upload Image Here (16:9 Ratio, Recommended: 1280x720 px) -->
-    <img src="match.jpg" alt="Match Image">
+    <!-- MATCH -->
+    <img src="match.jpg">
 
     <h2>Full Indian Premier League 2026 Coverage</h2>
 
@@ -147,10 +149,15 @@
 
     <p>🇮🇳 Trusted by Thousands of Indian</p>
 
+    <!-- 🔴 Counter -->
+    <div class="counter" id="counter"></div>
+
     <!-- BUTTON -->
     <a href="#" class="btn">👉 Join Our Telegram Channel</a>
 
-    <p class="urgency">⏳ Limited Free Access – Join Before Match Start</p>
+    <!-- ⏳ Timer -->
+    <div class="urgency">⏳ Limited Free Access – Join Before Match Start</div>
+    <div class="timer" id="timer"></div>
 
     <div class="trust">
       ✅ Live Cricket Updates <br>
@@ -159,5 +166,24 @@
     </div>
 
   </div>
+
+  <!-- 📌 Sticky Button -->
+  <a href="#" class="sticky-btn">👉 Join Telegram Now</a>
+
+  <script>
+    // 🔴 Fake Counter
+    let base = 2000 + Math.floor(Math.random() * 500);
+    document.getElementById("counter").innerText = "🔴 " + base + " people joined today";
+
+    // ⏳ Countdown Timer (30 min)
+    let time = 1800;
+    setInterval(() => {
+      let min = Math.floor(time / 60);
+      let sec = time % 60;
+      document.getElementById("timer").innerText = min + "m " + sec + "s";
+      if (time > 0) time--;
+    }, 1000);
+  </script>
+
 </body>
 </html>
